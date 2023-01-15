@@ -1,8 +1,12 @@
 <template>
     <div>
         <div class="blank flex flex-col items-center justify-center">
-            <h1 id="title"  class="text-4xl ">Web Developers</h1>
+            <h1 id="title" class="text-4xl ">Web Developers</h1>
             <h2 id="subTitle" class="text-2xl ">For You</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                class="w-20 h-20 animate__animated animate__pulse animate__repeat-10">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+            </svg>
         </div>
         <div class="wrapper">
             <div class="img1"></div>
@@ -23,7 +27,7 @@ export default {
     methods: {
         startAnimations: function () {
             gsap.to('#title', { duration: 1, color: 'red', fontSize: '68px' })
-            gsap.to('#subTitle', { duration: 1, color: '#000', fontSize: '48px', marginTop: '48px' }, 1)
+            gsap.to('#subTitle', { duration: 1, color: '#000', fontSize: '48px', marginTop: '48px', marginBottom: '48px' }, 1)
 
             const tlPhoto = gsap.timeline({
                 scrollTrigger: {

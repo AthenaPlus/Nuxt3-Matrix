@@ -1,28 +1,52 @@
 <template>
-    <div class="container px-5 py-24 mx-auto">
-        <h1 class="text-pink-500 text-5xl animate__animated animate__bounce">{{ item.title }}</h1>
-        <p class="mb-8">{{ item.description }}</p>
-        <NuxtLink to="/test" class="px-8 py-4 bg-pink-800 text-white uppercase">Test Page</NuxtLink>
-        <div class="mt-8">
-            <h2 class="text-3xl text-pink-800">
-                {{ item2.title }}
-            </h2>
-            <p class="">
-                {{ item2.description }}
-            </p>
+    <section>
+        <div id="foto" class=" relative">
+            <div class="beforeIMGContainer">
+                <img src="/img/Baner_limon.jpg" alt="" class="w-full grayscale">
+            </div>
+            <div class="afterIMGContainer absolute inset-0">
+                <img src="/img/Baner_limon.jpg" alt="" class="w-full">
+            </div>
         </div>
-        <div v-for="Post in Posts" :key="Post.index" class="mt-8">
-            <h2 class="text-3xl">
-                {{ Post.title }}
-            </h2>
-            <p class="">
-                {{ Post.description }}
-            </p>
+        <div class="container px-5 py-24 mx-auto">
+            <h1 class="text-pink-500 text-5xl animate__animated animate__bounce">{{ item.title }}</h1>
+            <p class="mb-8">{{ item.description }}</p>
+            <NuxtLink to="/test" class="px-8 py-4 bg-pink-800 text-white uppercase mr-2">Test Page</NuxtLink>
+            <NuxtLink to="/gsap" class="px-8 py-4 bg-pink-800 text-white uppercase mr-2">Gsap Page</NuxtLink>
+            <NuxtLink to="/textscroll" class="px-8 py-4 bg-pink-800 text-white uppercase">Scroll Page</NuxtLink>
+            <div class="mt-8">
+                <h2 class="text-3xl text-pink-800">
+                    {{ item2.title }}
+                </h2>
+                <p class="">
+                    {{ item2.description }}
+                </p>
+            </div>
+            <div v-for="Post in Posts" :key="Post.index" class="mt-8">
+                <h2 class="text-3xl">
+                    {{ Post.title }}
+                </h2>
+                <p class="">
+                    {{ Post.description }}
+                </p>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
+useHead({
+    title: 'Сайт Nuxt 3 Matrix',
+    meta: [
+        { name: 'description', content: 'Мы очень гордимся нашим обслуживанием клиентов, не только в поиске подходящих услуг, но и в нашем послепродажном обслуживании вплоть до установки. Это обязательство перед нашими клиентами принесло нам репутацию, которой мы очень гордимся!' }
+    ],
+    script: [
+        {
+            src: '/js/afterScrollTrigger.js',
+            body: true
+        }
+    ]
+})
 const createItem = (title, description) => ({ title, description })
 
 const item = createItem('PoliWeb Matrix', 'Это текст написан через константу')
@@ -53,5 +77,7 @@ export default {
 </script>
 
 <style scoped>
-
+.afterIMGContainer {
+    overflow: hidden;
+}
 </style>

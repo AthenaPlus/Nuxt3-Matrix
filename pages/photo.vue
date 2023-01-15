@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         startAnimations: function () {
-            gsap.to('#title', { duration: 1, color: 'red', fontSize: '68px' })
+            gsap.to('#title', { duration: 1, color: 'red', fontSize: '4vw' })
             gsap.to('#subTitle', { duration: 1, color: '#000', fontSize: '48px', marginTop: '48px', marginBottom: '48px' }, 1)
 
             const tlPhoto = gsap.timeline({

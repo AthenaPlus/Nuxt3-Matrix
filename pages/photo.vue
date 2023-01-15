@@ -69,7 +69,7 @@ export default {
                     height: '0%'
                 }, {
                     width: '100%',
-                    height: '100%'
+                    height: '101%'
                 }, 2)
                 .fromTo('.title2', 1, {
                     opacity: 0

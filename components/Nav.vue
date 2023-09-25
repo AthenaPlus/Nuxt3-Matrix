@@ -10,7 +10,7 @@
                 <span class="ml-3 text-xl">Web Development</span>
             </a>
             <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                <a v-for="NavLink in NavLinks" :key="NavLink.index" :href="NavLink.urlTo" class="mr-5 hover:text-gray-900">{{ NavLink.title }}</a>
+                <NuxtLink v-for="NavLink in NavLinks" :key="NavLink.index" :href="NavLink.urlTo" class="mr-5 hover:text-gray-900">{{ NavLink.title }}</NuxtLink>
             </nav>
             <button
                 class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
@@ -40,6 +40,10 @@ const NavLinks = [
     {
         title: 'Photo Scroll',
         urlTo: '/photo'
+    },
+    {
+        title: 'Scroll',
+        urlTo: '/scroll'
     },
     {
         title: 'Test',

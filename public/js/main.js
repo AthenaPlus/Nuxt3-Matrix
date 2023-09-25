@@ -1,10 +1,4 @@
-/**
- * Анемирование блока с контейнером "Наши достижения в цифрах"
- * источник https://codepen.io/poliweb/pen/rNrxpYr
- */
-
-setTimeout(() => {
-    const animItems = document.querySelectorAll('._anim-items');
+const animItems = document.querySelectorAll('._anim-items');
 
     if (animItems.length > 0) {
         window.addEventListener('scroll', animOnScroll);
@@ -41,7 +35,3 @@ setTimeout(() => {
         }
         animOnScroll()
     }
-
-}, 100)
-
-

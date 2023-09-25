@@ -316,37 +316,76 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
+import gsap from 'gsap';
+
+const ctx = ref();
+const img1 = document.querySelector('.img1')
+
 useHead({
     title: 'Сайт Nuxt 3 Matrix',
     meta: [
         { name: 'description', content: 'Мы очень гордимся нашим обслуживанием клиентов, не только в поиске подходящих услуг, но и в нашем послепродажном обслуживании вплоть до установки. Это обязательство перед нашими клиентами принесло нам репутацию, которой мы очень гордимся!' }
     ],
-    script: [
-        {
-            src: 'js/main.js',
-            body: true
-        },
-        {
-            src: '/js/gsapScrollTrigger.js',
-            body: true
-        },
-        {
-            src: '/js/gsap.js',
-            body: true
-        }
-    ]
+
+})
+definePageMeta({
+    layout: 'gsaplayot'
+  })
+
+
+onMounted(() => {
+
+    // gsap.utils.toArray('#triggerSpan').forEach((span) => {
+
+    //     ScrollTrigger.create({
+    //         trigger: span,
+    //         start: 'top bottom',
+    //         toggleClass: 'active',
+    //         markers: true,
+    //     })
+    // })
+
+    gsap.set(img1, { autoAlpha: 0 })
+            gsap.fromTo('.img1', {
+                y: -300,
+                rotation: 45,
+                autoAlpha: 0,
+            }, {
+                autoAlpha: 1,
+                y: 0,
+                rotation: 0,
+                duration: 2,
+                delay: 1,
+            })
+
+        ctx.value = gsap.context((self) => {
+            gsap.to('.imgscroll', {
+                scrollTrigger: {
+                    triger: '.imgscroll',
+                    start: 'center 60%',
+                    end: 'center 200px',
+                    scrub: 2,
+                    toggleActions: 'restart pause',
+                    // markers: true,
+
+                },
+                x: 170,
+                y: -100,
+                // rotation: 360,
+                duration: 3,
+            })
+        })
+        
+
 })
 
+onUnmounted(() => {
+    ctx.value.revert();
+})
 </script>
 
-<script>
 
-
-export default {
-
-}
-
-</script>
 
 <style scoped>
 .animat_kontainer {

@@ -1,13 +1,16 @@
 <template>
     <section>
-        <div id="foto" class=" relative">
-            <div class="beforeIMGContainer">
-                <img src="/img/Baner_limon.jpg" alt="" class="w-full grayscale">
+        <main>
+            <div id="foto" class=" relative">
+                <div class="beforeIMGContainer">
+                    <img src="/img/Baner_limon.jpg" alt="" class="w-full grayscale">
+                </div>
+                <div class="afterIMGContainer absolute inset-0">
+                    <img src="/img/Baner_limon.jpg" alt="" class="w-full">
+                </div>
             </div>
-            <div class="afterIMGContainer absolute inset-0">
-                <img src="/img/Baner_limon.jpg" alt="" class="w-full">
-            </div>
-        </div>
+        </main>
+
         <div class="container px-5 py-24 mx-auto">
             <h1 class="text-pink-500 text-5xl animate__animated animate__bounce">{{ item.title }}</h1>
             <p class="mb-8">{{ item.description }}</p>
@@ -35,18 +38,52 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
+import gsap from 'gsap';
+
+const main = ref();
+const ctx = ref();
+
+
 useHead({
     title: 'Сайт Nuxt 3 Matrix',
     meta: [
         { name: 'description', content: 'Мы очень гордимся нашим обслуживанием клиентов, не только в поиске подходящих услуг, но и в нашем послепродажном обслуживании вплоть до установки. Это обязательство перед нашими клиентами принесло нам репутацию, которой мы очень гордимся!' }
     ],
-    script: [
-        {
-            src: '/js/afterScrollTrigger.js',
-            body: true
-        }
-    ]
+
 })
+
+onMounted(() => {
+
+    ctx.value = gsap.context((self) => {
+        const tlImg = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#foto',
+            start: 'top top',
+            scrub: 2,
+            pin: true,
+            // markers: true
+        }
+    })
+
+    tlImg.fromTo('.afterIMGContainer', {
+            xPercent: 100
+        }, {
+            xPercent: 0
+        })
+        .fromTo('.afterIMGContainer img', {
+            xPercent: -100
+        }, {
+            xPercent: 0
+        }, 0)
+    })
+
+})
+
+onUnmounted(() => {
+    ctx.value.revert();
+})
+
 const createItem = (title, description) => ({ title, description })
 
 const item = createItem('PoliWeb Matrix', 'Это текст написан через константу')
